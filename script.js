@@ -323,3 +323,83 @@ setTimeout(() => {
     }
 }, 500);
 
+// --- REALISTIC CANVAS MILKY WAY STARS ---
+setTimeout(() => {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'starfield';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.zIndex = '-9998'; // Just above the milky way gradient
+    canvas.style.pointerEvents = 'none';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let stars = [];
+
+    function initStars() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        stars = [];
+        const numStars = Math.floor((w * h) / 1000); 
+        for(let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 1.5, 
+                a: Math.random(), 
+                s: Math.random() * 0.2 + 0.02 // Very slow upward drift
+            });
+        }
+    }
+
+    function drawStars() {
+        ctx.clearRect(0, 0, w, h);
+        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+        if(isLightMode) {
+            canvas.style.display = 'none';
+            requestAnimationFrame(drawStars);
+            return;
+        } else {
+            canvas.style.display = 'block';
+        }
+        
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,' + star.a + ')';
+            
+            // Add glow to bigger stars
+            if (star.r > 1.2) {
+                ctx.shadowBlur = 4;
+                ctx.shadowColor = '#fff';
+            } else {
+                ctx.shadowBlur = 0;
+            }
+            
+            ctx.fill();
+            
+            // Move up slowly
+            star.y -= star.s;
+            
+            // Twinkle
+            star.a += (Math.random() - 0.5) * 0.05;
+            if(star.a < 0.1) star.a = 0.1;
+            if(star.a > 1) star.a = 1;
+            
+            // Loop at edge
+            if(star.y < 0) {
+                star.y = h;
+                star.x = Math.random() * w;
+            }
+        });
+        requestAnimationFrame(drawStars);
+    }
+
+    initStars();
+    drawStars();
+    window.addEventListener('resize', initStars);
+}, 500);

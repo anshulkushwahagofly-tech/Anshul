@@ -861,3 +861,37 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
 [data-theme="light"] .aurora-bg {
   display: none;
 }
+
+/* Milky Way & Space Background */
+.milky-way-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+.milky-way-band {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vw;
+  height: 60vh;
+  background: radial-gradient(ellipse at center, rgba(73, 106, 172, 0.15) 0%, rgba(131, 58, 180, 0.1) 40%, rgba(0,0,0,0) 70%);
+  transform: translate(-50%, -50%) rotate(-35deg);
+  filter: blur(50px);
+  animation: mwDrift 40s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+
+@keyframes mwDrift {
+  0% { transform: translate(-50%, -50%) rotate(-35deg) scale(1); opacity: 0.8; }
+  100% { transform: translate(-45%, -45%) rotate(-30deg) scale(1.1); opacity: 1; }
+}
+
+[data-theme="light"] .milky-way-bg {
+  display: none;
+}
