@@ -215,16 +215,31 @@ setTimeout(() => {
 // --- MAGIC SEARCH BOX LOGIC ---
 const searchInput = document.querySelector('.search-bar input');
 if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
+    // Array of real post links and profile
+    const randomLinks = [
+        'https://www.instagram.com/p/DYwmDWMlIbB/',
+        'https://www.instagram.com/p/DZK7K9WCQ5A/',
+        'https://www.instagram.com/p/DaFYgd6Nh3p/',
+        'https://www.instagram.com/p/DaN8fEeASpr/',
+        'https://www.instagram.com/p/Db5mkVllAAp/',
+        'https://www.instagram.com/p/Dc8MLlwFOqx/',
+        'https://www.instagram.com/_anshul.kushwaha1'
+    ];
+
+    // Remove old listener if any by cloning the node
+    const newSearchInput = searchInput.cloneNode(true);
+    searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+
+    newSearchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter' && this.value.trim() !== '') {
-            // Get a random post from the galleryData
-            const randomPost = galleryData[Math.floor(Math.random() * galleryData.length)];
+            // Pick a random link from the predefined array
+            const randomUrl = randomLinks[Math.floor(Math.random() * randomLinks.length)];
             
             // Clear the search box
             this.value = '';
             
-            // Open the random post link in a new tab
-            window.open(randomPost.link, '_blank');
+            // Open the random URL
+            window.open(randomUrl, '_blank');
         }
     });
 }
