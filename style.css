@@ -895,20 +895,13 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
 }
 
 
-/* Instagram Sans New Logo Image */
+/* Official Instagram Text Logo */
 .insta-text-logo {
-  height: 40px;
+  height: 32px;
   width: auto;
   display: block;
-  margin-top: 2px;
-  mix-blend-mode: multiply;
-  object-fit: contain;
-}
-[data-theme="dark"] .insta-text-logo {
-  filter: invert(1) contrast(1.5);
-  mix-blend-mode: screen;
+  margin-top: 4px;
 }
 [data-theme="dark"] .insta-text-logo {
   filter: invert(1) brightness(2); /* Invert black to white for dark mode */
 }
-
