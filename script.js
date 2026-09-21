@@ -2,12 +2,10 @@
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
-// Check localStorage for theme
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   root.setAttribute('data-theme', savedTheme);
 } else {
-  // Default to dark as requested
   root.setAttribute('data-theme', 'dark');
 }
 
@@ -18,7 +16,6 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
-// Real Data for Gallery
 const galleryData = [
   { id: 1, type: 'image', src: 'assets/705969019_17975900409031953_952509664144437617_n.webp', link: 'https://www.instagram.com/p/DYwmDWMlIbB/', likes: 721, comments: 19 },
   { id: 2, type: 'image', src: 'assets/706629146_17975900427031953_6305284069408670403_n.webp', link: 'https://www.instagram.com/p/DB0PZt5x091/', likes: 387, comments: 64 },
@@ -57,125 +54,45 @@ const galleryData = [
   { id: 35, type: 'image', src: 'assets/798537711_17991282141031953_1595138273585003767_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1/', likes: 149, comments: 49 },
 ];
 
-// Render Gallery
 const gridGallery = document.getElementById('gridGallery');
 
-  function renderGallery() {
-    gridGallery.innerHTML = "";
-    galleryData.forEach(post => {
-      const item = document.createElement("div");
-      item.className = "grid-item";
-      
-      const thumbSrc = post.type === "carousel" ? post.images[0] : post.src;
-      let html = `<img src="${thumbSrc}" alt="Post image" loading="lazy">`;
-      
-      if (post.type === "carousel") {
-        html += `<svg class="icon carousel-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M22 4h-4V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h4v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM4 16V3h12v13H4zm16 5H8v-2h9a1 1 0 0 0 1-1V6h2v15z"/></svg>`;
-      }
-      
-      html += `
-        <div class="grid-overlay">
-          <div class="stat">
-            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <span>${post.likes}</span>
-          </div>
-          <div class="stat">
-            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>${post.comments}</span>
-          </div>
+function renderGallery() {
+  gridGallery.innerHTML = "";
+  galleryData.forEach(post => {
+    const item = document.createElement("div");
+    item.className = "grid-item";
+    
+    let html = `<img src="${post.src}" alt="Post image" loading="lazy">`;
+    
+    html += `
+      <div class="grid-overlay">
+        <div class="stat">
+          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span>${post.likes}</span>
         </div>
-      `;
-      
-      item.innerHTML = `
-        <a href="${post.link}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
-          ${html}
-        </a>
-      `;
-      
-      gridGallery.appendChild(item);
-    });
+        <div class="stat">
+          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>${post.comments}</span>
+        </div>
+      </div>
+    `;
+    
+    item.innerHTML = `
+      <a href="${post.link}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
+        ${html}
+      </a>
+    `;
+    
+    gridGallery.appendChild(item);
   });
 }
 
 renderGallery();
 
-// Modal Logic
-const modal = document.getElementById('postModal');
-const closeBtn = document.querySelector('.modal-close');
-const modalMedia = document.getElementById('modalMedia');
-const modalLikes = document.getElementById('modalLikes');
-const modalCaption = document.getElementById('modalCaption');
-
-let currentCarouselIndex = 0;
-let currentPost = null;
-
-function openModal(post) {
-  currentPost = post;
-  currentCarouselIndex = 0;
-  
-  modalLikes.textContent = post.likes.toLocaleString();
-  modalCaption.textContent = post.caption;
-  
-  renderModalMedia();
-  
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function renderModalMedia() {
-  modalMedia.innerHTML = '';
-  
-  if (currentPost.type === 'image') {
-    modalMedia.innerHTML = `<img src="${currentPost.src}" alt="Post media">`;
-  } else if (currentPost.type === 'carousel') {
-    const src = currentPost.images[currentCarouselIndex];
-    modalMedia.innerHTML = `
-      <img src="${src}" alt="Post media">
-      ${currentCarouselIndex > 0 ? '<button class="carousel-btn prev">&larr;</button>' : ''}
-      ${currentCarouselIndex < currentPost.images.length - 1 ? '<button class="carousel-btn next">&rarr;</button>' : ''}
-      <div class="carousel-dots">
-        ${currentPost.images.map((_, i) => `<div class="dot ${i === currentCarouselIndex ? 'active' : ''}"></div>`).join('')}
-      </div>
-    `;
-    
-    const prevBtn = modalMedia.querySelector('.prev');
-    const nextBtn = modalMedia.querySelector('.next');
-    
-    if (prevBtn) prevBtn.addEventListener('click', () => {
-      currentCarouselIndex--;
-      renderModalMedia();
-    });
-    
-    if (nextBtn) nextBtn.addEventListener('click', () => {
-      currentCarouselIndex++;
-      renderModalMedia();
-    });
-  }
-}
-
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-  currentPost = null;
-}
-
-closeBtn.addEventListener('click', closeModal);
-
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    closeModal();
-  }
-});
-
-
-
-// --- TRENDING ANIMATIONS LOGIC ---
 setTimeout(() => {
-    // 1. Add scroll reveal animations to grid items
     const items = document.querySelectorAll('.grid-item');
     items.forEach((item, index) => {
         item.classList.add('animate-on-scroll');
-        // Add staggered delay based on column
         item.style.transitionDelay = (index % 3) * 0.1 + 's';
     });
 
@@ -190,7 +107,6 @@ setTimeout(() => {
 
     items.forEach(item => observer.observe(item));
 
-    // 2. Initialize VanillaTilt for 3D hover effects
     if (typeof VanillaTilt !== 'undefined') {
         VanillaTilt.init(document.querySelectorAll(".grid-item"), {
             max: 15,
@@ -199,125 +115,29 @@ setTimeout(() => {
             "max-glare": 0.3,
             scale: 1.02
         });
-        
-        
     }
 }, 500);
 
-// --- MAGIC SEARCH BOX LOGIC ---
 const searchInput = document.querySelector('.search-bar input');
 if (searchInput) {
-    // Array of real post links and profile
     const randomLinks = [
         'https://www.instagram.com/p/DYwmDWMlIbB/',
-        'https://www.instagram.com/p/DZK7K9WCQ5A/',
-        'https://www.instagram.com/p/DaFYgd6Nh3p/',
-        'https://www.instagram.com/p/DaN8fEeASpr/',
-        'https://www.instagram.com/p/Db5mkVllAAp/',
-        'https://www.instagram.com/p/Dc8MLlwFOqx/',
+        'https://www.instagram.com/p/DB0PZt5x091/',
+        'https://www.instagram.com/p/DB1kUq0RoR-/',
+        'https://www.instagram.com/p/DB_B5HhR-3V/',
+        'https://www.instagram.com/p/DCRZ5YVRLV6/',
+        'https://www.instagram.com/p/DChE9w1RNZ7/',
         'https://www.instagram.com/_anshul.kushwaha1/'
     ];
 
-    // Remove old listener if any by cloning the node
     const newSearchInput = searchInput.cloneNode(true);
     searchInput.parentNode.replaceChild(newSearchInput, searchInput);
 
     newSearchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter' && this.value.trim() !== '') {
-            // Pick a random link from the predefined array
             const randomUrl = randomLinks[Math.floor(Math.random() * randomLinks.length)];
-            
-            // Clear the search box
             this.value = '';
-            
-            // Open the random URL
             window.open(randomUrl, '_blank');
         }
     });
 }
-
-// --- REAL 3D NETWORK ANIMATION ---
-setTimeout(() => {
-    if (typeof VANTA !== 'undefined') {
-        // We initialize Vanta NET (A cool 3D connected lines animation)
-        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
-        
-        window.vantaEffect = VANTA.NET({
-          el: ".animated-bg",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0xc13584, // Insta Pink
-          backgroundColor: isLightMode ? 0xffffff : 0x000000,
-          points: 12.00,
-          maxDistance: 22.00,
-          spacing: 18.00
-        });
-
-        // Listen for theme toggle to update Vanta background color
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            setTimeout(() => {
-                const newIsLight = document.documentElement.getAttribute('data-theme') === 'light';
-                if (window.vantaEffect) {
-                    window.vantaEffect.setOptions({
-                        backgroundColor: newIsLight ? 0xffffff : 0x000000
-                    });
-                }
-            }, 100);
-        });
-    }
-}, 500);
-// --- 3D SPACE / PARTICLES ANIMATION ---
-setTimeout(() => {
-    if (typeof particlesJS !== 'undefined') {
-        const initParticles = () => {
-            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
-            const pColor = isLightMode ? '#000000' : '#ffffff';
-            
-            particlesJS("particles-js", {
-              "particles": {
-                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": pColor },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.8, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": false }, // Space effect (no lines)
-                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "out_mode": "out" }
-              },
-              "interactivity": {
-                "detect_on": "window",
-                "events": {
-                  "onhover": { "enable": true, "mode": "grab" },
-                  "onclick": { "enable": true, "mode": "push" },
-                  "resize": true
-                },
-                "modes": {
-                  "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } },
-                  "push": { "particles_nb": 4 }
-                }
-              },
-              "retina_detect": true
-            });
-        };
-
-        initParticles();
-
-        // Update particles on theme change
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            setTimeout(() => {
-                initParticles(); // Reinitialize with new color
-            }, 100);
-        });
-    }
-}, 500);
-
-
-
-
-
-
-
