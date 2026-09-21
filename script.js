@@ -60,46 +60,40 @@ const galleryData = [
 // Render Gallery
 const gridGallery = document.getElementById('gridGallery');
 
-function renderGallery() {
-  galleryData.forEach(post => {
-    const item = document.createElement('div');
-    item.className = 'grid-item';
-    
-    // Thumbnail is first image
-    const thumbSrc = post.type === 'carousel' ? post.images[0] : post.src;
-    
-    let html = `<img src="${thumbSrc}" alt="Post image" loading="lazy">`;
-    
-    if (post.type === 'carousel') {
+  function renderGallery() {
+    gridGallery.innerHTML = "";
+    galleryData.forEach(post => {
+      const item = document.createElement("div");
+      item.className = "grid-item";
+      
+      const thumbSrc = post.type === "carousel" ? post.images[0] : post.src;
+      let html = `<img src="${thumbSrc}" alt="Post image" loading="lazy">`;
+      
+      if (post.type === "carousel") {
+        html += `<svg class="icon carousel-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M22 4h-4V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h4v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM4 16V3h12v13H4zm16 5H8v-2h9a1 1 0 0 0 1-1V6h2v15z"/></svg>`;
+      }
+      
       html += `
-        <svg class="icon carousel-icon" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M22 4h-4V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h4v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zM4 16V3h12v13H4zm16 5H8v-2h9a1 1 0 0 0 1-1V6h2v15z"/>
-        </svg>
+        <div class="grid-overlay">
+          <div class="stat">
+            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>${post.likes}</span>
+          </div>
+          <div class="stat">
+            <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>${post.comments}</span>
+          </div>
+        </div>
       `;
-    }
-
-    html += `
-      <div class="grid-overlay">
-        <div class="stat">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-          <span>${post.likes}</span>
-        </div>
-        <div class="stat">
-          <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span>${post.comments}</span>
-        </div>
-      </div>
-    `;
-
-                item.innerHTML = "
-        <a href="\${post.link}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
-          \${html}
+      
+      item.innerHTML = `
+        <a href="${post.link}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
+          ${html}
         </a>
-      ";
-    
-    
-    
-    gridGallery.appendChild(item);
+      `;
+      
+      gridGallery.appendChild(item);
+    });
   });
 }
 
@@ -320,6 +314,7 @@ setTimeout(() => {
         });
     }
 }, 500);
+
 
 
 
