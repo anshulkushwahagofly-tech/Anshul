@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://anshulkushwahagofly-tech.github.io/Anshul.instagram/sitemap.xml
