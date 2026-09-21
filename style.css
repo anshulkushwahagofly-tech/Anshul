@@ -704,7 +704,7 @@ body {
 .gradient-ring {
   background: linear-gradient(45deg, #FCAF45, #FD1D1D, #E1306C, #C13584, #833AB4, #FCAF45);
   background-size: 300% 300%;
-  animation: ringAnimate 4s ease infinite;
+  
 }
 
 @keyframes ringAnimate {
@@ -895,3 +895,4 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
 [data-theme="light"] .milky-way-bg {
   display: none;
 }
+

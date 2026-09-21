@@ -202,13 +202,7 @@ setTimeout(() => {
             scale: 1.02
         });
         
-        // Add tilt to profile picture too
-        VanillaTilt.init(document.querySelector(".profile-avatar-container"), {
-            max: 20,
-            speed: 300,
-            glare: true,
-            "max-glare": 0.4
-        });
+        
     }
 }, 500);
 
@@ -403,3 +397,4 @@ setTimeout(() => {
     drawStars();
     window.addEventListener('resize', initStars);
 }, 500);
+
