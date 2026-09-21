@@ -133,7 +133,7 @@ body {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: var(--ig-gradient);
+  background: #0095f6;
   padding: 4px;
   display: flex;
   align-items: center;
@@ -184,7 +184,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--ig-gradient);
+  background: #0095f6;
   color: white;
   transition: opacity 0.2s;
 }
@@ -473,7 +473,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--ig-gradient);
+  background: #0095f6;
   padding: 2px;
 }
 
@@ -893,3 +893,4 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
   background-color: var(--hover-bg);
   transform: translateY(-1px);
 }
+
