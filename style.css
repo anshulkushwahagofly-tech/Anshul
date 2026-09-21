@@ -687,3 +687,40 @@ body {
   }
 }
 
+
+/* Trending Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Animated Profile Ring */
+.gradient-ring {
+  background: linear-gradient(45deg, #FCAF45, #FD1D1D, #E1306C, #C13584, #833AB4, #FCAF45);
+  background-size: 300% 300%;
+  animation: ringAnimate 4s ease infinite;
+}
+
+@keyframes ringAnimate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 3D Depth on hover */
+.grid-item {
+  transform-style: preserve-3d;
+}
+.grid-item img {
+  transition: transform 0.3s ease;
+  transform: translateZ(10px);
+}
+.grid-item:hover img {
+  transform: translateZ(30px) scale(1.05);
+}
