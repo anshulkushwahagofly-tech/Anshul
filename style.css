@@ -29,7 +29,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, system-ui;
-  background-color: var(--bg-primary);
+  background-color: transparent; /* Changed to let animated bg show */
   color: var(--text-primary);
   line-height: 1.5;
   transition: background-color 0.3s, color 0.3s;
@@ -724,3 +724,65 @@ body {
 .grid-item:hover img {
   transform: translateZ(30px) scale(1.05);
 }
+
+
+/* Animated 3D Glowing Background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: #C13584; /* Instagram Pink */
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: #833AB4; /* Instagram Purple */
+  bottom: -20%;
+  right: -10%;
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background: #FCAF45; /* Instagram Orange */
+  top: 40%;
+  left: 60%;
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, -100px) scale(1.2); }
+  66% { transform: translate(-50px, 150px) scale(0.8); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+[data-theme="light"] .orb {
+  opacity: 0.15; /* Lighter in light mode */
+}
+
