@@ -585,24 +585,26 @@ body {
 
 @media (max-width: 767px) {
   .profile-header {
-    margin-bottom: 24px;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-areas: 
+      "avatar name"
+      "avatar actions"
+      "bio bio"
+      "stats stats";
+    gap: 12px 20px;
     padding: 16px;
+    margin-bottom: 0;
   }
   
   .profile-info {
     display: contents;
   }
   
-  .profile-title-row {
-    display: contents;
-  }
-  
   .profile-avatar-container {
-    order: 1;
-    margin-right: 20px;
-    flex: 0 0 auto;
+    grid-area: avatar;
+    margin-right: 0;
+    align-self: start;
   }
   
   .gradient-ring {
@@ -610,14 +612,38 @@ body {
     height: 80px;
   }
   
+  .profile-title-row {
+    display: contents;
+  }
+  
+  .profile-name-container {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .profile-actions {
+    grid-area: actions;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .profile-bio {
+    grid-area: bio;
+    width: 100%;
+    margin-top: 4px;
+    padding: 0;
+  }
+  
   .profile-stats {
-    order: 2;
-    flex: 1;
+    grid-area: stats;
     display: flex;
     justify-content: space-around;
-    border: none;
-    padding: 0;
-    margin: 0;
+    border-top: 1px solid var(--border-color);
+    padding: 12px 0;
+    margin: 12px 0 0 0;
   }
   
   .profile-stats span {
@@ -627,30 +653,10 @@ body {
     font-size: 0.875rem;
   }
   
-  .profile-name-container {
-    order: 3;
-    width: 100%;
-    margin-top: 16px;
-  }
-  
-  .profile-bio {
-    order: 4;
-    width: 100%;
-    margin-top: 8px;
-  }
-  
-  .profile-actions {
-    order: 5;
-    width: 100%;
-    margin-top: 16px;
-    display: flex;
-    gap: 8px;
-  }
-  
   .btn {
     flex: 1;
     text-align: center;
-    padding: 8px 16px;
+    padding: 6px 12px;
   }
 
   .grid-gallery {
@@ -658,7 +664,7 @@ body {
   }
 
   .grid-overlay {
-    display: none; /* No hover on mobile */
+    display: none;
   }
 
   .bottom-nav {
@@ -670,7 +676,7 @@ body {
   }
   
   .profile-container {
-    padding: 0 0 60px 0; /* space for bottom nav */
+    padding: 0 0 60px 0;
   }
 
   .modal {
