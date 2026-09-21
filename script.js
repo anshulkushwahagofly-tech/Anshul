@@ -279,3 +279,46 @@ setTimeout(() => {
         });
     }
 }, 500);
+// --- 3D SPACE / PARTICLES ANIMATION ---
+setTimeout(() => {
+    if (typeof particlesJS !== 'undefined') {
+        const initParticles = () => {
+            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+            const pColor = isLightMode ? '#000000' : '#ffffff';
+            
+            particlesJS("particles-js", {
+              "particles": {
+                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": pColor },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.8, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": false }, // Space effect (no lines)
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "out_mode": "out" }
+              },
+              "interactivity": {
+                "detect_on": "window",
+                "events": {
+                  "onhover": { "enable": true, "mode": "grab" },
+                  "onclick": { "enable": true, "mode": "push" },
+                  "resize": true
+                },
+                "modes": {
+                  "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } },
+                  "push": { "particles_nb": 4 }
+                }
+              },
+              "retina_detect": true
+            });
+        };
+
+        initParticles();
+
+        // Update particles on theme change
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            setTimeout(() => {
+                initParticles(); // Reinitialize with new color
+            }, 100);
+        });
+    }
+}, 500);
