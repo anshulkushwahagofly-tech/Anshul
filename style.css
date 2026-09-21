@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 :root {
   /* Light mode variables */
   --bg-primary: #FFFFFF;
@@ -64,11 +65,13 @@ body {
 }
 
 .logo {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: -0.5px;
+  font-family: 'Grand Hotel', cursive;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .search-bar {
@@ -895,13 +898,6 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
 }
 
 
-/* Official Instagram Text Logo */
-.insta-text-logo {
-  height: 32px;
-  width: auto;
-  display: block;
-  margin-top: 4px;
-}
-[data-theme="dark"] .insta-text-logo {
-  filter: invert(1) brightness(2); /* Invert black to white for dark mode */
-}
+
+
+
