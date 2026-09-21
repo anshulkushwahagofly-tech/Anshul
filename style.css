@@ -587,6 +587,8 @@ body {
   .profile-header {
     margin-bottom: 24px;
     align-items: flex-start;
+    flex-wrap: wrap;
+    
   }
   
   .gradient-ring {
@@ -606,6 +608,8 @@ body {
     padding: 12px 0;
     margin-bottom: 0;
     margin-top: 20px;
+    width: 100%;
+    order: 4;
   }
 
   .profile-stats span {
@@ -619,6 +623,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    flex: 1;
+    min-width: 0;
   }
 
   .profile-actions {
@@ -650,9 +656,7 @@ body {
     padding: 16px 0 60px 0; /* space for bottom nav */
   }
   
-  .profile-info, .profile-header {
-    padding: 0;
-  }
+  
 
   .modal {
     padding: 0;
@@ -680,6 +684,15 @@ body {
     color: white; /* Needs to be white because media is always black background */
     top: 10px;
     right: 10px;
+  }
+  .profile-info {
+    display: contents;
+  }
+  .profile-bio {
+    width: 100%;
+    order: 3;
+    margin-top: 20px;
+    
   }
 }
 
@@ -896,6 +909,7 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
   background-color: var(--hover-bg);
   transform: translateY(-1px);
 }
+
 
 
 
