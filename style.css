@@ -606,7 +606,7 @@ body {
     display: contents;
   }
   .profile-name-container {
-    display: contents;
+    display: contents !important;
   }
   
   .profile-avatar-container {
@@ -932,6 +932,7 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
   background-color: var(--hover-bg);
   transform: translateY(-1px);
 }
+
 
 
 
