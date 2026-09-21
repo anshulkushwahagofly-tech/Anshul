@@ -649,7 +649,7 @@ body {
   .profile-bio {
     grid-area: bio;
     width: 100%;
-    margin-top: 4px;
+    margin-top: -6px;
     padding: 0;
   }
   
@@ -929,6 +929,7 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
   background-color: var(--hover-bg);
   transform: translateY(-1px);
 }
+
 
 
 
