@@ -20,12 +20,12 @@ themeToggle.addEventListener('click', () => {
 
 // Real Data for Gallery
 const galleryData = [
-  { id: 1, type: 'image', src: 'assets/705969019_17975900409031953_952509664144437617_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 721, comments: 19 },
-  { id: 2, type: 'image', src: 'assets/706629146_17975900427031953_6305284069408670403_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 387, comments: 64 },
-  { id: 3, type: 'image', src: 'assets/707421430_17975900436031953_7350767925149927150_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 162, comments: 43 },
-  { id: 4, type: 'image', src: 'assets/707826898_17975900418031953_4678570204504850335_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 924, comments: 39 },
-  { id: 5, type: 'image', src: 'assets/716010113_17977334352031953_243620711673238642_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 525, comments: 57 },
-  { id: 6, type: 'image', src: 'assets/716530797_17977334334031953_5998082533630159352_n.webp', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 218, comments: 94 },
+  { id: 1, type: 'image', src: 'assets/705969019_17975900409031953_952509664144437617_n.webp', link: 'https://www.instagram.com/p/DYwmDWMlIbB/', likes: 721, comments: 19 },
+  { id: 2, type: 'image', src: 'assets/706629146_17975900427031953_6305284069408670403_n.webp', link: 'https://www.instagram.com/p/DB0PZt5x091/', likes: 387, comments: 64 },
+  { id: 3, type: 'image', src: 'assets/707421430_17975900436031953_7350767925149927150_n.webp', link: 'https://www.instagram.com/p/DB1kUq0RoR-/', likes: 162, comments: 43 },
+  { id: 4, type: 'image', src: 'assets/707826898_17975900418031953_4678570204504850335_n.webp', link: 'https://www.instagram.com/p/DB_B5HhR-3V/', likes: 924, comments: 39 },
+  { id: 5, type: 'image', src: 'assets/716010113_17977334352031953_243620711673238642_n.webp', link: 'https://www.instagram.com/p/DCRZ5YVRLV6/', likes: 525, comments: 57 },
+  { id: 6, type: 'image', src: 'assets/716530797_17977334334031953_5998082533630159352_n.webp', link: 'https://www.instagram.com/p/DChE9w1RNZ7/', likes: 218, comments: 94 },
   { id: 7, type: 'image', src: 'assets/729889293_17981034711031953_2097197063479599326_n.jpg', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 218, comments: 55 },
   { id: 8, type: 'image', src: 'assets/730018588_17981034705031953_3111802760980135046_n.jpg', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 679, comments: 6 },
   { id: 9, type: 'image', src: 'assets/730163290_17981034720031953_6929216384975361526_n.jpg', link: 'https://www.instagram.com/_anshul.kushwaha1', likes: 463, comments: 78 },
@@ -316,5 +316,6 @@ setTimeout(() => {
         });
     }
 }, 500);
+
 
 
