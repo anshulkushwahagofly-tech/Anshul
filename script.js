@@ -91,11 +91,11 @@ function renderGallery() {
       </div>
     `;
 
-          item.innerHTML = 
-        <a href="\" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
-          \
+                item.innerHTML = "
+        <a href="\${post.link}" target="_blank" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">
+          \${html}
         </a>
-      ;
+      ";
     
     
     
@@ -320,6 +320,8 @@ setTimeout(() => {
         });
     }
 }, 500);
+
+
 
 
 
