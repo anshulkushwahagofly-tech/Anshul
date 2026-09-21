@@ -806,3 +806,58 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
   position: relative;
   z-index: 10;
 }
+
+/* Premium Aurora Liquid Background (Code-based Video Alternative) */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999;
+  background: linear-gradient(-45deg, #050505, #1c091f, #0d1223, #0a0a0a);
+  background-size: 400% 400%;
+  animation: auroraFlow 12s ease infinite;
+  overflow: hidden;
+}
+
+.aurora-bg::before, .aurora-bg::after {
+  content: "";
+  position: absolute;
+  width: 150vw;
+  height: 150vh;
+  top: -25vh;
+  left: -25vw;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.aurora-bg::before {
+  background: radial-gradient(circle at 40% 40%, rgba(193, 53, 132, 0.15), transparent 50%);
+  animation: auroraPulse1 15s alternate infinite ease-in-out;
+}
+
+.aurora-bg::after {
+  background: radial-gradient(circle at 70% 60%, rgba(131, 58, 180, 0.15), transparent 50%);
+  animation: auroraPulse2 20s alternate infinite ease-in-out;
+}
+
+@keyframes auroraFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes auroraPulse1 {
+  0% { transform: scale(1) rotate(0deg) translate(0px, 0px); }
+  100% { transform: scale(1.3) rotate(15deg) translate(50px, -50px); }
+}
+
+@keyframes auroraPulse2 {
+  0% { transform: scale(1) rotate(0deg) translate(0px, 0px); }
+  100% { transform: scale(1.2) rotate(-10deg) translate(-50px, 50px); }
+}
+
+[data-theme="light"] .aurora-bg {
+  display: none;
+}
