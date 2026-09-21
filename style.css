@@ -584,9 +584,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .desktop-logo { display: none !important; }
-  .mobile-logo { display: block !important; }
-  .desktop-username { display: none !important; }
+  
   .profile-header {
     margin-bottom: 24px;
     align-items: center;
