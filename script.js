@@ -243,3 +243,39 @@ if (searchInput) {
         }
     });
 }
+
+// --- REAL 3D NETWORK ANIMATION ---
+setTimeout(() => {
+    if (typeof VANTA !== 'undefined') {
+        // We initialize Vanta NET (A cool 3D connected lines animation)
+        const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+        
+        window.vantaEffect = VANTA.NET({
+          el: ".animated-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0xc13584, // Insta Pink
+          backgroundColor: isLightMode ? 0xffffff : 0x000000,
+          points: 12.00,
+          maxDistance: 22.00,
+          spacing: 18.00
+        });
+
+        // Listen for theme toggle to update Vanta background color
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            setTimeout(() => {
+                const newIsLight = document.documentElement.getAttribute('data-theme') === 'light';
+                if (window.vantaEffect) {
+                    window.vantaEffect.setOptions({
+                        backgroundColor: newIsLight ? 0xffffff : 0x000000
+                    });
+                }
+            }, 100);
+        });
+    }
+}, 500);
