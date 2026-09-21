@@ -776,3 +776,33 @@ body {
 [data-theme="light"] #bg-video {
   display: none; /* Hide video in light mode as requested */
 }
+
+/* Bulletproof Background Video */
+.video-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -9999;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* Dim the video so content is readable */
+  pointer-events: none;
+}
+
+[data-theme="light"] .video-bg-container {
+  display: none;
+}
+
+/* Ensure all website content is strictly ON TOP */
+body, main, .profile-section, .gallery-tabs, .grid-gallery {
+  position: relative;
+  z-index: 10;
+}
