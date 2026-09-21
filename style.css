@@ -866,3 +866,30 @@ body, main, .profile-section, .gallery-tabs, .grid-gallery {
 
 
 
+
+/* Social Banners (Theme Adaptive) */
+.insta-links {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.social-banner {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: var(--bg-secondary);
+  border-radius: 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.social-banner:hover {
+  background-color: var(--hover-bg);
+  transform: translateY(-1px);
+}
