@@ -211,3 +211,20 @@ setTimeout(() => {
         });
     }
 }, 500);
+
+// --- MAGIC SEARCH BOX LOGIC ---
+const searchInput = document.querySelector('.search-bar input');
+if (searchInput) {
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+            // Get a random post from the galleryData
+            const randomPost = galleryData[Math.floor(Math.random() * galleryData.length)];
+            
+            // Clear the search box
+            this.value = '';
+            
+            // Open the random post link in a new tab
+            window.open(randomPost.link, '_blank');
+        }
+    });
+}
